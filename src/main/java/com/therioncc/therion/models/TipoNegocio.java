@@ -1,5 +1,7 @@
 package com.therioncc.therion.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "TipoNegocio")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idTipoNegocio")
 public class TipoNegocio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,18 +1,23 @@
 package com.therioncc.therion.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "Producto")
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idProducto")
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProducto;
 
     private String prNombre;
-    private String prPrecio;
+    private int prPrecio;
     private String prImagen;
     private String prDescripcion;
 
@@ -25,16 +30,7 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(String prNombre, String prPrecio, String prImagen, String prDescripcion, List<Menu> menus) {
-        this.prNombre = prNombre;
-        this.prPrecio = prPrecio;
-        this.prImagen = prImagen;
-        this.prDescripcion = prDescripcion;
-        this.menus = menus;
-    }
-
-    public Producto(Long idProducto, String prNombre, String prPrecio, String prImagen, String prDescripcion, List<Menu> menus) {
-        this.idProducto = idProducto;
+    public Producto(String prNombre, int prPrecio, String prImagen, String prDescripcion, List<Menu> menus) {
         this.prNombre = prNombre;
         this.prPrecio = prPrecio;
         this.prImagen = prImagen;
@@ -58,11 +54,11 @@ public class Producto {
         this.prNombre = prNombre;
     }
 
-    public String getPrPrecio() {
+    public int getPrPrecio() {
         return prPrecio;
     }
 
-    public void setPrPrecio(String prPrecio) {
+    public void setPrPrecio(int prPrecio) {
         this.prPrecio = prPrecio;
     }
 

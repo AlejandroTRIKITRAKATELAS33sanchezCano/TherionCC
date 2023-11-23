@@ -34,10 +34,6 @@ public class Cliente implements UserDetails {
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos;
 
-    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Direccion direccion;
-
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("Cliente"));

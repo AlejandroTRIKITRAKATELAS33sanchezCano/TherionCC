@@ -1,30 +1,50 @@
 package com.therioncc.therion.models;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idNegocio")
 public class Negocio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("idNegocio")
     private Long idNegocio;
+
+    @JsonProperty("neNombre")
     private String NeNombre;
+
+    @JsonProperty("neAbierto")
     private boolean NeAbierto;
+
+    @JsonProperty("neActivo")
     private boolean NeActivo;
+
+    @JsonProperty("neBorrado")
     private boolean NeBorrado;
+
+    @JsonProperty("neImagen")
     private String NeImagen;
 
     @ManyToOne
+    @JsonIgnore
     private Duenno duenno;
 
+    @JsonProperty("neTarjeta")
     private boolean NeTarjeta;
+
+    @JsonProperty("neDomicilio")
     private boolean NeDomicilio;
 
     @OneToMany(mappedBy = "negocio")
+    @JsonIgnore
     private List<Menu> menus;
 
     @OneToMany(mappedBy = "negocio")
+    @JsonIgnore
     private List<Horario> horarios;
 
     @ManyToMany
@@ -32,9 +52,11 @@ public class Negocio {
             name = "negocio_tipo_negocio",
             joinColumns = @JoinColumn(name = "negocio_idNegocio"),
             inverseJoinColumns = @JoinColumn(name = "tipo_negocio_idTipoNegocio"))
+    @JsonIgnore
     private List<TipoNegocio> tiposNegocio;
 
-    @OneToMany(mappedBy = "negocio")
+    @OneToMany(mappedBy = "negocio", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Contacto> contactos;
 
     // Constructor and Getters and setters

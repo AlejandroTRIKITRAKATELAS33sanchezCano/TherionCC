@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @Configuration
 @RequiredArgsConstructor
-public class AplicationConfig {
+public class AplicationConfig{
 
     private final IDuennoRepositorio iDuennoRepositorio;
     private final IClienteRepositorio iClienteRepositorio;

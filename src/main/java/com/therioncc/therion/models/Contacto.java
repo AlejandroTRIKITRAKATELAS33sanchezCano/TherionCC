@@ -16,10 +16,6 @@ public class Contacto {
     @ManyToOne
     private Negocio negocio;
 
-    @ManyToOne
-    @JoinColumn(name = "idDuenno")
-    private Duenno duenno;
-
     public Contacto() {
     }
 
@@ -27,7 +23,6 @@ public class Contacto {
         CoNombre = coNombre;
         CoTelefono = coTelefono;
         this.negocio = negocio;
-        this.duenno = duenno;
 
     }
 
@@ -36,7 +31,6 @@ public class Contacto {
         CoNombre = coNombre;
         CoTelefono = coTelefono;
         this.negocio = negocio;
-        this.duenno = duenno;
     }
 
 
@@ -70,13 +64,5 @@ public class Contacto {
 
     public void setNegocio(Negocio negocio) {
         this.negocio = negocio;
-    }
-
-    public Duenno getDuenno() {
-        return duenno;
-    }
-
-    public void setDuenno(Duenno duenno) {
-        this.duenno = duenno;
     }
 }

@@ -27,7 +27,6 @@ public class NegocioRequest {
     private boolean neAbierto;
     private boolean neActivo;
     private boolean neBorrado;
-    private String neImagen;
 
     //Imagen
 

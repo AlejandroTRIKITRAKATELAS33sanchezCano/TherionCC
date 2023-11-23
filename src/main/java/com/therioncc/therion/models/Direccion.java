@@ -1,8 +1,11 @@
 package com.therioncc.therion.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idDireccion")
 public class Direccion {
 
     @Id
@@ -16,10 +19,6 @@ public class Direccion {
     private String colonia;
 
     private String codigopostal;
-
-    @OneToOne
-    @JoinColumn(name = "cliente_id", unique = true)
-    private Cliente cliente;
 
     @OneToOne
     @JoinColumn(name = "negocio_id", unique = true)
@@ -36,7 +35,6 @@ public class Direccion {
         this.alcaldia = alcaldia;
         this.colonia = colonia;
         this.codigopostal = codigopostal;
-        this.cliente = cliente;
         this.negocio = negocio;
     }
 
@@ -78,14 +76,6 @@ public class Direccion {
 
     public void setCodigopostal(String codigopostal) {
         this.codigopostal = codigopostal;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     public Negocio getNegocio(){ return negocio; }

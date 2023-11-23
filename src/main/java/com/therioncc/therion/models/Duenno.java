@@ -1,5 +1,8 @@
 package com.therioncc.therion.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,25 +24,31 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"du_correo"})})
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idDuenno")
 public class Duenno implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("idDuenno")
     private Long idDuenno;
 
+    @JsonProperty("dunNombre")
     private String dunNombre;
+
+    @JsonProperty("duAppat")
     private String duAppat;
+
+    @JsonProperty("duApmat")
     private String duApmat;
 
     @Column(name = "du_correo")
+    @JsonProperty("duCorreo")
     private String duCorreo;
 
+    @JsonProperty("duContrasenna")
     private String duContrasenna;
 
     @OneToMany(mappedBy = "duenno")
     private List<Negocio> negocios;
-
-    @OneToMany(mappedBy = "duenno")
-    private List<Contacto> contactos;
 
 
     @Override

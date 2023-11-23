@@ -14,10 +14,7 @@ public class DuennoRequest {
     private String duApmat;
     private String duCorreo;
     private String duContrasenna;
-    private String coNombre;
-    private String coTelefono;
 
-    @ManyToOne
     private Negocio negocio;
 
     public DuennoRequest() {
@@ -29,8 +26,6 @@ public class DuennoRequest {
         this.duApmat = duApmat;
         this.duCorreo = duCorreo;
         this.duContrasenna = duContrasenna;
-        this.coNombre = coNombre;
-        this.coTelefono = coTelefono;
         this.negocio = negocio;
     }
 
@@ -75,22 +70,6 @@ public class DuennoRequest {
 
     public void setDuContrasenna(String duContrasenna) {
         this.duContrasenna = duContrasenna;
-    }
-
-    public String getCoNombre() {
-        return coNombre;
-    }
-
-    public void setCoNombre(String coNombre) {
-        this.coNombre = coNombre;
-    }
-
-    public String getCoTelefono() {
-        return coTelefono;
-    }
-
-    public void setCoTelefono(String coTelefono) {
-        this.coTelefono = coTelefono;
     }
 
     public Negocio getNegocio() {

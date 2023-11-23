@@ -1,14 +1,21 @@
 package com.therioncc.therion.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.sql.Time;
 import java.time.LocalTime;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idHorario")
 public class Horario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("idHorario")
     private Long idHorario;
 
     @ManyToOne
@@ -17,7 +24,10 @@ public class Horario {
     @ManyToOne
     private DiaSemana diaSemana;
 
+    @JsonProperty("horaApertura")
     private LocalTime horaApertura;
+
+    @JsonProperty("horaCierre")
     private LocalTime horaCierre;
 
     // Getters and setters

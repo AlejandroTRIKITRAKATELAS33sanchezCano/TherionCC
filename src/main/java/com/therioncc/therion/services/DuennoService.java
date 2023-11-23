@@ -52,20 +52,7 @@ public class DuennoService {
         String encodedPassword = passwordEncoder.encode(duennoRequest.getDuContrasenna());
         duenno.setDuContrasenna(encodedPassword);
 
-        Contacto contacto = new Contacto();
-
-        contacto.setCoNombre(duennoRequest.getCoNombre());
-        contacto.setCoTelefono(duennoRequest.getCoTelefono());
-        contacto.setNegocio(null);
-        contacto.setDuenno(duenno);
-
-        List<Contacto> listaContactos = new ArrayList<>();
-        listaContactos.add(contacto);
-
         //Guardar Contacto
-        contactoRepositorio.save(contacto);
-
-        duenno.setContactos(listaContactos);
 
         System.out.println(duenno);
 

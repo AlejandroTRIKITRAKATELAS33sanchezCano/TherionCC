@@ -1,25 +1,40 @@
 package com.therioncc.therion.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Table(name = "Menu")
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idMenu")
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("idMenu")
     private Long idMenu;
 
+    @JsonProperty("meNombre")
     private String MeNombre;
+
+    @JsonProperty("meDisponible")
     private boolean MeDisponible;
 
+    @JsonProperty("meActivo")
     private boolean MeActivo;
 
+    @JsonProperty("meImagen")
     private  String MeImagen;
 
     @ManyToOne
@@ -34,8 +49,8 @@ public class Menu {
     )
     private List<Producto> productos;
 
-    // Constructores, getters y setters
-
+    public Menu() {
+    }
 
     public Menu(Long idMenu, String meNombre, boolean meDisponible, boolean meActivo, String meImagen, Negocio negocio, List<Producto> productos) {
         this.idMenu = idMenu;
@@ -45,9 +60,6 @@ public class Menu {
         MeImagen = meImagen;
         this.negocio = negocio;
         this.productos = productos;
-    }
-
-    public Menu() {
     }
 
     public Menu(String meNombre, boolean meDisponible, boolean meActivo, String meImagen, Negocio negocio, List<Producto> productos) {
